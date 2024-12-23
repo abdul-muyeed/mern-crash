@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/app.js",
-    "dev": "nodemon server/app.js"
+    "dev": "nodemon server/app.js",
+    "start": "yarn && yarn --cwd client && yarn --cwd client build && node server/app.js"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +15,6 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "mongoose": "^8.9.2",
-    "nodemon": "^3.1.9"
+    "mongoose": "^8.9.2"
   }
 }

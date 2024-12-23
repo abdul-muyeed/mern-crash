@@ -31,7 +31,7 @@ export const updateProduct = async (req, res) => {
   try {
     const id = req.params.id;
     const product = req.body;
-    if (mongoose.Types.ObjectId.isValid(id)) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
       return res
         .status(404)
         .send({ success: false, message: "Invalid product id" });
@@ -57,19 +57,20 @@ export const updateProduct = async (req, res) => {
 };
 export const deleteProduct = async (req, res) => {
   try {
-    const id = req.params.id;
-    if (mongoose.Types.ObjectId.isValid(id)) {
+    const id = req.params.id;  
+    if (!mongoose.Types.ObjectId.isValid(id)) {
       return res
         .status(404)
         .send({ success: false, message: "Invalid product id" });
     }
     const product = await Product.findByIdAndDelete(id);
+    console.log(product);
     if (!product) {
       return res
         .status(404)
         .send({ success: false, message: "Product not found" });
     }
-    res
+    return res
       .status(200)
       .send({ success: true, message: "Product deleted successfully" });
   } catch (error) {

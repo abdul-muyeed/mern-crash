@@ -4,6 +4,7 @@ import { connectDB } from "./configs/db.js";
 import ProductRoutes from "./routes/product.js";
 
 dotenv.config();
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 app.use(express.json());
@@ -16,7 +17,7 @@ app.use("/products", ProductRoutes);
 
 
 
-app.listen(3000, async () => {
+app.listen(PORT, async () => {
   await connectDB();
-  console.error("Server is running on http://localhost:3000");
+  console.error("Server is running on http://localhost:"+PORT);
 });
